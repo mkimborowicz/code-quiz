@@ -1,0 +1,60 @@
+* {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+body {
+    background: rgb(140, 167, 224);
+}
+
+header {
+    padding: 30px;
+    background: black;
+    display: inline block;
+    text-align: center;
+    display: flex;
+}
+
+.game-title, h1{
+    color: white;
+    font-size: 70px;
+    background: black;
+    font-variant: small-caps;
+    flex-basis: 50%;
+}
+
+h3 {
+    color: white;
+    font-size: 13px;
+    font-family: monospace;
+    line-height: 13px;
+}
+
+nav {
+    flex-basis: 25%;
+    flex-direction: column;
+    margin-top: 19px;
+}
+
+.button {
+    background-color: rgb(240, 106, 179);
+    color: black;
+    font-size: 20px;
+    padding: 7px 12px 7px 12px;
+    border-radius: 30px;
+    border: 5px solid black;
+}
+
+.button:hover {
+    background: rgb(243, 42, 152);
+}
+
+.timer {
+    color: white;
+    font-family: monospace;
+    font-size: 40px;
+    flex-basis: 20%;
+    padding-top: 30px;
+    display: none;
+}
