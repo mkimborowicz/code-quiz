@@ -58,3 +58,16 @@ nav {
     padding-top: 30px;
     display: none;
 }
+
+.quiz-content {
+    text-align: center;
+    display: none;
+}
+
+h2 {
+    padding: 20px;
+}
+
+.end-game {
+    display:none;
+}

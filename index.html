@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,40 @@
     <link rel="stylesheet" href="Assets/style.css">
     <title>Document</title>
 </head>
+
 <body>
-    
-<header>
-    <nav>
-    <button class = "button start">Start Game</button>
-    <button class = "button high-score" onclick = "location.href='highscores.html'">High Scores</button>
-    </nav>
-    <div class = "game-title">Code Quiz
-    <h3>try to answer the following code-related questions within the time limit. keep in mind that incorrect answers will penalize your time/score by five seconds.</h3>
-    </div>
-    <div class = "timer">60</div>
-</header>
 
-<main>
+    <header>
+        <nav>
+            <button class="button start">Start Game</button>
+            <button class="button high-score" onclick="location.href='highscores.html'">High Scores</button>
+        </nav>
+        <div class="game-title">Code Quiz
+            <h3>try to answer the following code-related questions within the time limit. keep in mind that incorrect
+                answers will penalize your time/score by five seconds.</h3>
+        </div>
+        <div class="timer">60</div>
+    </header>
+
+    <main>
+        <div class="quiz-content">
+            <h2 id="questionTitle"></h2>
+            <div id="quizChoices"></div>
+        </div>
+
+        <div class="end-game">
+            <div id="end-message">All done! Your final score is 0!</div>
+            <form>
+                <label for="enter-name">Enter Name:</label>
+                <input id="enter-name" type=text>
+            </form>
+            <button type="submit" form="enter-name" value="submit" onclick="location.href='highscores.html'">
+                Submit</button>
+        </div>
+    </main>
 
 
-</main>
-
-
-<script src="Assets/script.js"></script>
+    <script src="Assets/script.js"></script>
 </body>
+
 </html>

@@ -1,28 +1,58 @@
 
 var startButton = document.querySelector(".start");
-var highScores = document.querySelector(".high-score");
 var timer = document.querySelector(".timer");
+var quizContent = document.querySelector(".quiz-content");
+var questionTitle = document.querySelector("#questionTitle");
+var quizChoices = document.querySelector("#quizChoices");
+var gameOver = document.querySelector(".end-game");
+var index = 0;
+var secondsLeft = 60;
+var timeInterval;
 
-startButton.addEventListener("click", startGame);
-// highScores.addEventListener("click", scoreBoard);
+var questions = [{
+
+    question: "Commonly used data types do NOT include _____",
+    choices: ["strings", "booleans", "alerts", "numbers"],
+    correctAnswer: "alerts"
+},
+{
+    question: "The condition in an if/else statement is enclosed within _____",
+    choices: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+    correctAnswer: "parenthesis"
+},
+{
+    question: "Arrays in Javascript can be used to store _____",
+    choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+    correctAnswer: "all of the above"
+},
+{
+    question: "String values must be enclosed within _____ when being assigned to variables",
+    choices: ["commas", "curly brackets", "quotes", "parenthesis"],
+    correctAnswer: "quotes"
+}];
+
+
 
 // creates start game function
 function startGame() {
     // makes timer appear when start button is pushed
-    timer.setAttribute("style","display:block");
+    timer.setAttribute("style", "display:block");
     // makes start button dissapear after it's pushed
-    startButton.setAttribute("style","display:none");
+    startButton.setAttribute("style", "display:none");
+    // makes questions appear when start button is pushed
+    quizContent.setAttribute("style", "display:block");
     // calls countdown function
     countdown();
-    quiz();
+    timer.textContent = secondsLeft;
+    nextQuestion();
 }
 
 // creates countdown function from 60 seconds
 function countdown() {
-    var secondsLeft = 60;
 
-    var timeInterval = setInterval(function() {
-        if (secondsLeft>=1) {
+
+    timeInterval = setInterval(function () {
+        if (secondsLeft >= 1) {
             secondsLeft--;
             timer.textContent = secondsLeft;
         }
@@ -31,31 +61,54 @@ function countdown() {
             timer.textContent = "time up!";
         }
     }
-,1000);
+        , 1000);
 }
 
-var quizContent = {
 
-    question1: ["Commonly used data types do NOT include _____:"],
-    answers: ["1.strings", "2.booleans", "3.alerts", "4.numbers"],
-    correctAnswer: ["3.alerts"],
 
-    question2: ["The condition in an if/else statement is enclosed within _____."],
-    answers: ["1.quotes", "2.curly brackets", "3.parenthesis", "4.square brackets"],
-    correctAnswer: ["2.curly brackets"],
+function nextQuestion() {
+    questionTitle.textContent = questions[index].question
 
-    question3: ["Commonly used data types do NOT include _____:"],
-    answers: ["1.strings", "2.booleans", "3.alerts", "4.numbers"],
-    correctAnswer: ["3.alerts"]
+    quizChoices.innerHTML = '';
 
-};
+    for (let i = 0; i < questions[index].choices.length; i++) {
+        var choiceBtn = document.createElement('button');
+        choiceBtn.setAttribute('class', 'choice-button')
+        choiceBtn.setAttribute('value', questions[index].choices[i])
 
-console.log(quizContent.question2[0]);
+        choiceBtn.textContent = questions[index].choices[i];
 
-function quiz() {
-    
+        choiceBtn.onclick = answerQuestion;
+
+        quizChoices.append(choiceBtn)
+
+
+    }
 }
+
+function answerQuestion() {
+    console.log(this.value)
+    if (this.value !== questions[index].correctAnswer) {
+        secondsLeft -= 5
+    }
+
+    index++;
+
+    if (index === questions.length) {
+        endGame()
+    }
+    else {
+        nextQuestion();
+    }
+
+}
+
 
 function endGame() {
-    timeInterval = clearInterval;
+    clearInterval(timeInterval)
+    quizContent.innerHTML = '';
+    gameOver.setAttribute("style", "display: block");
+    timer.setAttribute("style", "display:none");
 }
+
+startButton.addEventListener("click", startGame);
