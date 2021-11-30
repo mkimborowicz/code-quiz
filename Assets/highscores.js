@@ -1,10 +1,7 @@
 
-var scoreDisplay = document.querySelector(".score");
-var nameDisplay = document.querySelector(".name");
+var scoreDisplay = document.querySelector(".leaderboard");
 
-var name = localStorage.getItem("name");
-var score = localStorage.getItem("score");
+var userScore = JSON.parse(localStorage.getItem("userScore"));
 
-scoreDisplay.textContent = score;
-nameDisplay.textContent = userName;
+scoreDisplay.children[0].append(userScore.userName + " - " + userScore.score);
 

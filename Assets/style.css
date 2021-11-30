@@ -86,3 +86,13 @@ h2 {
     padding: 20px;
     font-size: 20px;
 }
+
+.leaderboard {
+    padding-top: 10px;
+    font-size: 20px;
+    
+}
+
+.leaderboard ul {
+    background:rgb(103, 128, 180);
+}

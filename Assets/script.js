@@ -11,6 +11,7 @@ var index = 0;
 var secondsLeft = 60;
 var timeInterval;
 
+// declares questions, choices, and correct answers
 var questions = [{
 
     question: "Commonly used data types do NOT include _____",
@@ -73,13 +74,12 @@ function countdown() {
 // function when user clicks an answer, determines if it is correct or not
 function answerQuestion() {
     // docks 5 seconds for incorrect answer
-    console.log(this.value)
     if (this.value !== questions[index].correctAnswer) {
         secondsLeft -= 10
     }
 
     index++;
-
+// if it is the last question, ends game
     if (index === questions.length) {
         endGame()
     }
@@ -91,14 +91,14 @@ function answerQuestion() {
 
 function nextQuestion() {
     questionTitle.textContent = questions[index].question
-
+// clears previous button choices
     quizChoices.innerHTML = '';
-
+// adds buttons and classes to buttons
     for (let i = 0; i < questions[index].choices.length; i++) {
         var choiceBtn = document.createElement('button');
         choiceBtn.setAttribute('class', 'choice-button')
         choiceBtn.setAttribute('value', questions[index].choices[i])
-
+// changes text content of buttons
         choiceBtn.textContent = questions[index].choices[i];
 
         choiceBtn.onclick = answerQuestion;
@@ -110,19 +110,23 @@ function nextQuestion() {
 function endGame() {
     clearInterval(timeInterval)
     quizContent.innerHTML = '';
+    // displays end of game page
     gameOver.setAttribute("style", "display: block");
+    // hides timer
     timer.setAttribute("style", "display:none");
+    // displays end of game message and final score
     endMessage.textContent = "All done! Your final score is " + secondsLeft + "!";
 }
 
 submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
+// creates array so name and score will be stores in local storage as a string
+var userScore = {
+    userName: document.querySelector("#name-input").value,
+    score: secondsLeft
+}
 
-var userName = document.querySelector("#name-input").value;
-var score = secondsLeft;
-
-localStorage.setItem("name", userName);''""""""
-localStorage.setItem("score", score);
+localStorage.setItem("userScore", JSON.stringify(userScore));
 })
 
 startButton.addEventListener("click", startGame);
