@@ -6,11 +6,11 @@ var questionTitle = document.querySelector("#questionTitle");
 var quizChoices = document.querySelector("#quizChoices");
 var gameOver = document.querySelector(".end-game");
 var endMessage = document.querySelector("#end-message");
+var submitBtn = document.querySelector(".submit");
 var index = 0;
 var secondsLeft = 60;
 var timeInterval;
 
-// lists questions, answers, and correct answer
 var questions = [{
 
     question: "Commonly used data types do NOT include _____",
@@ -57,7 +57,6 @@ function startGame() {
 // creates countdown function from 60 seconds
 function countdown() {
 
-
     timeInterval = setInterval(function () {
         if (secondsLeft >= 1) {
             secondsLeft--;
@@ -76,7 +75,7 @@ function answerQuestion() {
     // docks 5 seconds for incorrect answer
     console.log(this.value)
     if (this.value !== questions[index].correctAnswer) {
-        secondsLeft -= 5
+        secondsLeft -= 10
     }
 
     index++;
@@ -115,5 +114,15 @@ function endGame() {
     timer.setAttribute("style", "display:none");
     endMessage.textContent = "All done! Your final score is " + secondsLeft + "!";
 }
+
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+
+var userName = document.querySelector("#name-input").value;
+var score = secondsLeft;
+
+localStorage.setItem("name", userName);''""""""
+localStorage.setItem("score", score);
+})
 
 startButton.addEventListener("click", startGame);
